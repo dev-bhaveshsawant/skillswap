@@ -76,7 +76,9 @@ All authenticated routes expect `Authorization: Bearer <JWT>`.
 - For production, use a managed MySQL database and a Node.js host for the API. Set `DB_*`, `JWT_SECRET`, `CLIENT_ORIGIN`, and `PORT` as private host environment variables. Use a unique production secret and HTTPS.
 - GitHub Pages can host the built frontend (`npm run build` creates `dist/`), but it cannot run Express or MySQL. Deploy the API separately, set `VITE_API_URL` to its HTTPS API base before building the frontend, and set `CLIENT_ORIGIN` to the frontend URL.
 - The video call also needs the signaling service available over secure WebSockets (`wss://`). Set `VITE_SIGNALING_URL` to that URL for a deployed frontend. For reliable calls across restrictive networks, configure a TURN service through the existing `VITE_TURN_URL`, `VITE_TURN_USERNAME`, and `VITE_TURN_CREDENTIAL` build variables.
+- This repository includes `.github/workflows/deploy.yml`. Set **Settings → Pages → Source** to **GitHub Actions**; pushes to `main` build and publish the Vite `dist/` folder at `https://dev-bhaveshsawant.github.io/skillswap/`. The workflow reads the public API and signaling URLs from the repository variables `VITE_API_URL` and `VITE_SIGNALING_URL` after those services have been hosted. These variables are URLs, not secrets.
+- Until the Express API, MySQL database, and signaling service are deployed separately and their URLs are configured, the Pages deployment is only a frontend preview; registration, exchanges, and video calls will not work online.
 
 ## Verification notes
 
-`npm run build` and Node syntax checks pass. Basic API smoke checks return 400 for invalid registration input and 401 for a protected route without a token. Full account, profile, matching, request, schedule and feedback tests require XAMPP MySQL to be running and the schema imported; MySQL was not running during the initial smoke checks.
+`npm run build` passes. The API `/health` check connected to XAMPP MySQL during local setup. Full registration-through-feedback flows have not yet been verified end-to-end.

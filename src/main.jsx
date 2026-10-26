@@ -191,4 +191,4 @@ function App() {
     <Route path="*" element={<Navigate to="/" replace />} />
   </Routes></div>;
 }
-createRoot(document.getElementById('root')).render(<BrowserRouter><App /></BrowserRouter>);
+createRoot(document.getElementById('root')).render(<BrowserRouter basename={import.meta.env.BASE_URL}><App /></BrowserRouter>);
