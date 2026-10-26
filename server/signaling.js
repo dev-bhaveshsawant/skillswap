@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { WebSocketServer, WebSocket } from 'ws';
 
-const PORT = Number(process.env.SIGNALING_PORT || 8787);
+const PORT = Number(process.env.PORT || process.env.SIGNALING_PORT || 8787);
 const MAX_ROOMS = 500;
 const ROOM_TTL = 1000 * 60 * 60 * 24;
 const MAX_TIMER_DELAY = 2147483647;

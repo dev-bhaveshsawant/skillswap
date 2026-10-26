@@ -299,4 +299,4 @@ app.use((error, _req, res, _next) => {
   res.status(500).json({ error: 'Server error. Check the API and database logs.' });
 });
 
-app.listen(port, () => console.log(`SkillSwap API listening at http://localhost:${port}`));
+app.listen(port, '0.0.0.0', () => console.log(`SkillSwap API listening on port ${port}`));
