@@ -7,6 +7,7 @@
     "dev": "concurrently -k \"vite\" \"node server/signaling.js\" \"node server/api.js\"",
     "api": "node server/api.js",
     "signaling": "node server/signaling.js",
+    "db:setup:cloud": "node server/setup-cloud-db.js",
     "build": "vite build",
     "preview": "vite preview"
   },

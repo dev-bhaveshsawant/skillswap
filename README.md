@@ -52,6 +52,10 @@ Use two separate accounts (for example, a normal browser window and an Incognito
 
 The earlier local-only demo records stay in the browser. The first time a real account loads backend data, the prior exchange JSON is also copied to the `skillswap-local-demo-backup` localStorage key; it is not imported into MySQL.
 
+## Import the schema into a cloud MySQL database without installing another GUI
+
+The project already includes `mysql2`, so MySQL Workbench is optional. For Aiven, download the service CA certificate, copy `.env.cloud.example` to `.env.cloud`, and set the host, port, username, password, database name, and local CA certificate path from Aiven's Overview page. `.env.cloud` is ignored by Git. Then run `npm run db:setup:cloud` from the project root. This executes `server/schema.sql` over a verified TLS connection. Never commit or share `.env.cloud` or the CA certificate.
+
 ## 4. API routes
 
 All authenticated routes expect `Authorization: Bearer <JWT>`.
